@@ -6,5 +6,5 @@ const router = express.Router()
 
 router.route("/course/createCourse").post(CourseImageUpload,createCourse)
 router.route("/getAllCourses").get(getAllCourses)
-router.route("/getCourseBycategory/").get(getByCategories)
+router.route("/getCourseBycategory").get(getByCategories)
 module.exports = router
