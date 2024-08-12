@@ -4,7 +4,7 @@ const {CourseImageUpload} = require("../middlewares/Course_Image")
 
 const router = express.Router()
 
-router.route("/course/createCourse").post(CourseImageUpload,createCourse)
+router.route("/course/createCourse").post(createCourse)
 router.route("/getAllCourses").get(getAllCourses)
 router.route("/getCourseBycategory").get(getByCategories)
 module.exports = router

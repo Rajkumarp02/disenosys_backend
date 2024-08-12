@@ -6,7 +6,6 @@ exports.createCourse = CatchAsyncError(async(req,res,next)=>{
 
     const {courseName,category,price,description,duration,noOfLessons} = req.body
 
-    const imagePath = req.file.path
 
     const course = await CourseModel.create({
         courseName: courseName,
@@ -14,7 +13,6 @@ exports.createCourse = CatchAsyncError(async(req,res,next)=>{
         price: price,
         duration: duration,
         description: description,
-        imagePath: imagePath,
         noOfLessons: noOfLessons
     })
     if(!course)
