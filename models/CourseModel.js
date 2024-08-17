@@ -22,13 +22,7 @@ const courseSchema = new mongoose.Schema({
     ],
     reviews:[
         {
-         userId :{
-            type: mongoose.Types.ObjectId,
-            ref: "users"
-         },
-         reviews:{
-            type: String
-         }
+   
         }
     ],
     price:{

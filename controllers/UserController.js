@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt")
 const ErrorHandler = require("../utils/ErrorHandler")
 const SendToken = require("../utils/SendToken")
 const nodemailer = require("nodemailer")
+const SendEmail = require("../utils/SendEmail")
+const crypto = require("crypto")
 
 
 exports.RegisterUser = CatchAsyncError(async(req,res,next)=>{
@@ -74,15 +76,8 @@ exports.ResetLink = CatchAsyncError(async(req,res)=>{
     
         await user.save({validateBeforeSave: false})
     
-        const resetUrl = `http://localhost:8000/api/v1//users/forgotPassword/${token}`;
-        var transport = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
-            auth: {
-              user: "",
-              pass: ""
-            }
-          });
+        const resetUrl = `http://localhost:8000/api/v1/forgotPassword/${token}`;
+       
     
           const message = {
               from: "sandbox.smtp.mailtrap.io",
@@ -91,15 +86,15 @@ exports.ResetLink = CatchAsyncError(async(req,res)=>{
               text: resetUrl
           }
       
-         await transport.sendMail(message)
+        //  await SendEmail(message)
         
-        res.json({token})
+        res.json({resetUrl})
     
 })
 
-exports.RsetPassword = CatchAsyncError(async(req,res)=>{
+exports.ResetPassword = CatchAsyncError(async(req,res)=>{
 
-        const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
+        const resetPasswordToken = crypto.createHash('sha256').update(req.query.token).digest('hex')
     
     const user = await UserModel.findOne({
         resetPasswordToken,
