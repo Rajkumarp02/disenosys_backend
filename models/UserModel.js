@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     },
     resetPasswordTokenExpire:{
        type: Date
+    },
+    reviews:{
+        type: mongoose.Types.ObjectId,
+        ref: "reviews"
     }
 })
 

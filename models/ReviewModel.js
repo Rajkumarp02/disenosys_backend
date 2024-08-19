@@ -6,6 +6,10 @@ const reviewSchema = new mongoose.Schema({
         ref:"users",
         required:[true,"please Enter userName"]
     },
+    userId:{
+        type: mongoose.Types.ObjectId,
+        ref: "users"
+    },
     courseName:{
         type: String,
         ref:"courses",
